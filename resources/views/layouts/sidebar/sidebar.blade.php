@@ -24,22 +24,162 @@
                 <div>Dashboard</div>
             </a>
         </li>
-        <!-- Apps & Pages -->
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Master Data</span>
-        </li>
-        <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-            <a href="" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-paper-bag"></i>
-                <div data-i18n="Produk">Produk</div>
-            </a>
-        </li>
 
-        <li class="menu-item  {{ request()->is('stok*') ? 'active' : '' }}">
-            <a href="" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-fridge"></i>
-                <div data-i18n="Stok Bahan Baku">Stok Bahan Baku</div>
-            </a>
-        </li>
+        @if (Auth::user()->role == 'admin')
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Pengguna</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-users"></i>
+                    <div data-i18n="User">Pengguna</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Unit Usaha</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-building-store"></i>
+                    <div data-i18n="Unit Usaha">Unit Usaha</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-category"></i>
+                    <div data-i18n="Jenis Unit Usaha">Jenis Unit Usaha</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Transaksi</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-cash"></i>
+                    <div data-i18n="Semua Transaksi">Semua Transaksi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-shopping-cart-plus"></i>
+                    <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
+                    <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Kegiatan</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-calendar"></i>
+                    <div data-i18n="Agenda"> Agenda</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-category"></i>
+                    <div data-i18n="Kategori Berita"> Kategori Berita</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-news"></i>
+                    <div data-i18n="Berita"> Berita</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Website</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Visi Misi"> Visi Misi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Banner">Banner</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Struktural">Struktural</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Sosial Media">Social Media</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Regulasi">Regulasi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Profile">Profile</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Gallery">Gallery</div>
+                </a>
+            </li>
+        @else
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Unit Usaha</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-building-store"></i>
+                    <div data-i18n="Unit Usaha">Unit Usaha</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Transaksi</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-cash"></i>
+                    <div data-i18n="Semua Transaksi">Semua Transaksi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-shopping-cart-plus"></i>
+                    <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
+                    <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Master Setting</span>
+            </li>
+            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-users"></i>
+                    <div data-i18n="Profil Pengguna"> Profil Pengguna</div>
+                </a>
+            </li>
+        @endif
+
+
     </ul>
 </aside>
