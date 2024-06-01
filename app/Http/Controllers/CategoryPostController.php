@@ -10,10 +10,23 @@ class CategoryPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $categoryPost = CategoryPost::orderBy('created_at', 'desc')->get();
+            return datatables()
+                ->of($categoryPost)
+                ->addIndexColumn()
+                ->addColumn('aksi', function ($categoryPost) {
+                    return view('layouts.pages.admin.CategoryPost.tombol', ['data' => $categoryPost]);
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+        }
+        return view('layouts.pages.admin.CategoryPost.index');
     }
+
+
 
     /**
      * Show the form for creating a new resource.

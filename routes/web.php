@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\CategoryPost;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,6 +19,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('categoryPost', CategoryPostController::class);
+    Route::get('categoryPostData', [CategoryPostController::class, 'data'])->name('categoryPostData');
+});
+
 
 
 
