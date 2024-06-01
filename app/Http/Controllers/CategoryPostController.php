@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\CategoryPost;
 use Illuminate\Http\Request;
 
@@ -41,15 +42,22 @@ class CategoryPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+        $categoryPost = $request->all();
+        $categoryPost['slug'] = Str::slug($request->title, '-');
+        CategoryPost::create($categoryPost);
+        return back()->with('success_message_create', 'Data Kategori Berhasil Dibuat');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CategoryPost $categoryPost)
+    public function show($id)
     {
-        //
+        $data = CategoryPost::where('idCategoryPost', $id)->first();
+        return response()->json(['result' => $data], 200);
     }
 
     /**
@@ -63,16 +71,31 @@ class CategoryPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CategoryPost $categoryPost)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|max:255'
+        ]);
+        $categoryPost = CategoryPost::where('idCategoryPost', $id)->first();
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title, '-');
+        $categoryPost->update($data);
+        return back()->with('success_message_update', 'Data Kategori Berhasi Diubah');
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoryPost $categoryPost)
+    public function destroy($id)
     {
+        try {
+            $categoryPost = CategoryPost::where('idCategoryPost', $id)->first();
+            $categoryPost->delete();
+            return back()->with('success_message_delete', 'Data berhasil di hapus');
+        } catch (\Throwable $th) {
+            return back()->with('error_message_delete', 'Gagal Menghapus Data ');
+        }
         //
     }
 }

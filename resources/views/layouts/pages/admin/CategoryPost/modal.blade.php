@@ -8,12 +8,12 @@
                     <h3 class="address-title mb-2">Tambah Kategori Berita</h3>
                     <p class="text-muted address-subtitle">Silahkan masukan data tambah Kategori Berita</p>
                 </div>
-                <form id="addNewAddressForm" class="row g-3" action="" method="post" novalidate
-                    enctype="multipart/form-data">
+                <form id="addNewAddressForm" class="row g-3" action="{{ route('admin.categoryPost.store') }}"
+                    method="post" novalidate enctype="multipart/form-data">
                     @csrf
                     <div class="col-12">
-                        <label class="form-label" for="modalAddressFirstName">Nama Bahan Baku</label>
-                        <input type="text" id="name" name="name" class="form-control" />
+                        <label class="form-label" for="modalAddressFirstName">Nama Kategori</label>
+                        <input type="text" id="name" name="title" class="form-control" />
                     </div>
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
@@ -34,16 +34,16 @@
             <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
-                    <h3 class="address-title mb-2">Edit Bahan Baku</h3>
-                    <p class="text-muted address-subtitle">Silahka masukan Edit data bahan baku</p>
+                    <h3 class="address-title mb-2">Edit Kategori</h3>
+                    <p class="text-muted address-subtitle">Silahka Edit Data Kategori</p>
                 </div>
-                <form id="bahanbakuupdate" class="row g-3" method="POST" novalidate enctype="multipart/form-data">
+                <form id="updatedata" class="row g-3" method="POST" novalidate enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
 
                     <div class="col-12">
-                        <label class="form-label" for="modalAddressFirstName">Nama Bahan Baku</label>
-                        <input type="text" id="nameEdit" name="name" class="form-control" />
+                        <label class="form-label" for="modalAddressFirstName">Nama Kategori</label>
+                        <input type="text" id="titleedit" name="title" class="form-control" />
                     </div>
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
@@ -64,10 +64,10 @@
             <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center content-data mb-4">
-                    <h3 class="address-title mb-2">Delete Bahan Baku</h3>
-                    <p class="text-muted address-subtitle">apakah anda yakin akan menghapus data</p>
+                    <h3 class="address-title mb-2">Delete Kategori</h3>
+                    <p class="text-muted address-subtitle">apakah anda yakin akan menghapus data kategori</p>
                 </div>
-                <form id="bahanbakudelete" class="row g-3" method="POST" novalidate enctype="multipart/form-data">
+                <form id="deleteModal" class="row g-3" method="POST" novalidate enctype="multipart/form-data">
                     @method('DELETE')
                     @csrf
                     <div class="col-12 text-center">

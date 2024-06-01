@@ -45,6 +45,7 @@
 
 @push('script')
     <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    {{-- script view data  --}}
     <script>
         let table; // Declare table as a global variable
         $(document).ready(function() {
@@ -62,6 +63,68 @@
                     searchable: false,
                 }],
 
+            });
+        });
+    </script>
+    {{-- muncul form tambah data  --}}
+    <script>
+        function tambahData() {
+            $('#tambahdata').modal('show');
+        }
+    </script>
+    {{-- update data  --}}
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.tombol-edit', function(e) {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '{{ route('admin.categoryPost.show', ['categoryPost' => ':id']) }}'
+                        .replace(
+                            ':id',
+                            id),
+                    type: 'GET',
+                    success: function(response) {
+                        $('#editdata').modal('show');
+                        $('#titleedit').val(response.result.title);
+                        console.log(response.result.idBahan);
+                        $('#updatedata').attr('action',
+                            '{{ route('admin.categoryPost.update', ['categoryPost' => ':id']) }}'
+                            .replace(':id',
+                                id));
+
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- delete data  --}}
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.tombol-del', function(e) {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '{{ route('admin.categoryPost.show', ['categoryPost' => ':id']) }}'
+                        .replace(
+                            ':id',
+                            id),
+                    type: 'GET',
+                    success: function(response) {
+                        $('#deletedata').modal('show');
+                        // $('#idBahan').val(response.result.idBahan);
+                        $('.title').empty();
+
+                        // Create a new paragraph element with the updated class
+                        var nameParagraph = $('<p>').addClass('title').text('Nama: ' +
+                            response.result.title);
+
+                        // Append the new paragraph to the existing content-data div
+                        $('.content-data').append(nameParagraph);
+
+                        // Update the form action attribute
+                        $('#deleteModal').attr('action',
+                            '/admin/categoryPost/' + id);
+                    }
+                });
             });
         });
     </script>

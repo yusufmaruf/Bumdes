@@ -80,7 +80,7 @@
                     <div data-i18n="Agenda"> Agenda</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+            <li class="menu-item {{ request()->is('admin/categoryPost*') ? 'active' : '' }}">
                 <a href="{{ route('admin.categoryPost.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-category"></i>
                     <div data-i18n="Kategori Berita"> Kategori Berita</div>
