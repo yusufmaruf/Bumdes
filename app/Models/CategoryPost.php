@@ -9,7 +9,7 @@ class CategoryPost extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'categoryPost';
+    protected $primaryKey = 'idCategoryPost';
     protected $fillable = [
         'title',
         'slug',

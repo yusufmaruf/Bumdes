@@ -5,7 +5,7 @@
                 <img src="{{ asset('assets/img/branding/logo.png') }}" alt="" width="32px" height="22px"
                     srcset="">
             </span>
-            <span class="app-brand-text demo menu-text fw-bold">SPMS</span>
+            <span class="app-brand-text demo menu-text fw-bold">BUMDES</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -80,8 +80,8 @@
                     <div data-i18n="Agenda"> Agenda</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/categoryPost*') ? 'active' : '' }}">
+                <a href="{{ route('admin.categoryPost.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-category"></i>
                     <div data-i18n="Kategori Berita"> Kategori Berita</div>
                 </a>
