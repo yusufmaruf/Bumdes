@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\CategoryPost;
 use GuzzleHttp\Middleware;
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('categoryPost', CategoryPostController::class);
-    Route::get('categoryPostData', [CategoryPostController::class, 'data'])->name('categoryPostData');
+    Route::resource('categoryUnitUsaha', JenisUsahaController::class);
 });
 
 
