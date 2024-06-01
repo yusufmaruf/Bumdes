@@ -44,8 +44,8 @@
                     <div data-i18n="Unit Usaha">Unit Usaha</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/categoryUnitUsaha*') ? 'active' : '' }}">
+                <a href="{{ route('admin.categoryUnitUsaha.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-category"></i>
                     <div data-i18n="Jenis Unit Usaha">Jenis Unit Usaha</div>
                 </a>
