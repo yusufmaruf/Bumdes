@@ -17,8 +17,8 @@ class Bumdes extends Model
         'logo',
         'lokasi',
         'maps',
-        'images',
         'idJenisUsaha',
         'phoneNumber',
+        'email'
     ];
 }

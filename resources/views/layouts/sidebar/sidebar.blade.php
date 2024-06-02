@@ -38,8 +38,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Unit Usaha</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/bumdes*') ? 'active' : '' }}">
+                <a href="{{ route('admin.bumdes.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-building-store"></i>
                     <div data-i18n="Unit Usaha">Unit Usaha</div>
                 </a>

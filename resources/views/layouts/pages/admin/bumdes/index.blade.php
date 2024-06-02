@@ -17,15 +17,15 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Pengguna</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Bumdes</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Data Pengguna</h5>
+                    <h5 class="card-title mb-0">Data Bumdes</h5>
                     <!-- Move the button to the right using ml-auto -->
                     @if (auth()->user()->role == 'admin')
-                        <a href="{{ route('admin.pengguna.create') }}" class="btn btn-primary ml-auto"><span
+                        <a href="{{ route('admin.bumdes.create') }}" class="btn btn-primary ml-auto"><span
                                 class="ti ti-plus me-1">
                             </span> Tambah Data</a>
                     @endif
@@ -34,12 +34,14 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>email</th>
-                            <th>phone</th>
-                            <th>address</th>
-                            <th>Gender</th>
-                            <th>Photo</th>
+                            <th>Nama Usaha</th>
+                            <th>Deskripsi</th>
+                            <th>Logo</th>
+                            <th>Lokasi</th>
+                            <th>maps</th>
+                            <th>jenis usaha</th>
+                            <th>Nomor telephone</th>
+                            <th>Email</th>
                             <th style="max-width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -50,7 +52,7 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.pengguna.modalDelete')
+    @includeIf('layouts.pages.admin.bumdes.modalDelete')
 @endsection
 
 @push('script')
@@ -67,7 +69,7 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('admin.pengguna.index') }}',
+                    url: '{{ route('admin.bumdes.index') }}',
                 },
                 columns: [{
                     data: 'DT_RowIndex',
@@ -75,16 +77,20 @@
                     data: 'name',
                     name: 'name',
                 }, {
+                    data: 'desc',
+                    name: 'desc',
+                }, {
+                    data: 'image'
+                }, {
+                    data: 'lokasi',
+                }, {
+                    data: 'maps',
+                }, {
+                    data: 'idJenisUsaha',
+                }, {
+                    data: 'phoneNumber',
+                }, {
                     data: 'email',
-                    name: 'email',
-                }, {
-                    data: 'phone'
-                }, {
-                    data: 'address',
-                }, {
-                    data: 'gender',
-                }, {
-                    data: 'photo',
                 }, {
                     data: 'aksi',
                     orderable: false,
@@ -99,7 +105,7 @@
                 var id = $(this).data('id');
                 console.log(id);
                 $.ajax({
-                    url: '{{ route('admin.pengguna.show', ['pengguna' => ':id']) }}'.replace(':id',
+                    url: '{{ route('admin.bumdes.show', ['bumde' => ':id']) }}'.replace(':id',
                         id),
                     type: 'GET',
                     success: function(response) {
@@ -117,7 +123,7 @@
 
                         // Update the form action attribute
                         $('#productdelete').attr('action',
-                            '/admin/pengguna/' + id);
+                            '/admin/bumdes/' + id);
                     }
                 });
 
