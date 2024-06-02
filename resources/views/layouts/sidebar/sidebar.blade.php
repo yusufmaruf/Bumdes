@@ -29,8 +29,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Pengguna</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/penggun*') ? 'active' : '' }}">
+                <a href="{{ route('admin.pengguna.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     <div data-i18n="User">Pengguna</div>
                 </a>
@@ -38,8 +38,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Unit Usaha</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/bumdes*') ? 'active' : '' }}">
+                <a href="{{ route('admin.bumdes.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-building-store"></i>
                     <div data-i18n="Unit Usaha">Unit Usaha</div>
                 </a>
@@ -65,8 +65,8 @@
                     <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('/admin/reportpurchaseadmin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reportpurchaseadmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
                     <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
                 </a>

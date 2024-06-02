@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id('idBumdes');
             $table->integer('idUser');
             $table->string('name');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->string('logo')->nullable();
-            $table->string('lokasi');
-            $table->string('maps');
-            $table->string('images');
+            $table->string('lokasi')->nullable();
+            $table->string('maps')->nullable();
             $table->string('idJenisUsaha');
-            $table->string('phoneNumber');
+            $table->string('phoneNumber')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
