@@ -65,8 +65,8 @@
                     <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('/admin/reportpurchaseadmin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reportpurchaseadmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
                     <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
                 </a>

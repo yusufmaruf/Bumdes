@@ -4,6 +4,7 @@ use App\Http\Controllers\BumdesController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportPurchaseAdminController;
 use App\Http\Controllers\UserController;
 use App\Models\CategoryPost;
 use GuzzleHttp\Middleware;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('categoryUnitUsaha', JenisUsahaController::class);
     Route::resource('pengguna', UserController::class);
     Route::resource('bumdes', BumdesController::class);
+    Route::resource('reportpurchaseadmin', ReportPurchaseAdminController::class);
 });
 
 
