@@ -29,8 +29,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Pengguna</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/penggun*') ? 'active' : '' }}">
+                <a href="{{ route('admin.pengguna.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     <div data-i18n="User">Pengguna</div>
                 </a>

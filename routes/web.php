@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\CategoryPost;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('categoryPost', CategoryPostController::class);
     Route::resource('categoryUnitUsaha', JenisUsahaController::class);
+    Route::resource('pengguna', UserController::class);
 });
 
 
