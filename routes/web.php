@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('bumdes', BumdesController::class);
     Route::resource('reportpurchaseadmin', ReportPurchaseAdminController::class);
     Route::resource('reportsalesadmin', ReportPurchaseAdminController::class);
+    Route::resource('reportAdmin', ReportPurchaseAdminController::class);
 });
 
 

@@ -53,8 +53,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Transaksi</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/reportAdmin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reportAdmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-cash"></i>
                     <div data-i18n="Semua Transaksi">Semua Transaksi</div>
                 </a>

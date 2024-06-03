@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class ReportPurchaseAdminController extends Controller
+class ReportAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +13,28 @@ class ReportPurchaseAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transaction::where('category', 'pengeluaran')->orderBy('created_at', 'desc')->get();
+            $data = Transaction::orderBy('created_at', 'desc')->get();
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
+                ->addColumn('pemasukan', function ($data) {
+                    if ($data->category == 'pemasukan') {
+                        return $data->total;
+                    } else {
+                        return "";
+                    }
+                })
+                ->addColumn('pengeluaran', function ($data) {
+                    if ($data->category == 'pengeluaran') {
+                        return $data->total;
+                    } else {
+                        return "";
+                    }
+                })
+                ->rawColumns(['pemasukan', 'pengeluaran'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        return view('layouts.pages.admin.ReportPurchase.index');
     }
 
     /**
