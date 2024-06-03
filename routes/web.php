@@ -9,6 +9,7 @@ use App\Http\Controllers\BumdesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReportPurchaseAdminController;
 
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('reportAdmin', ReportPurchaseAdminController::class);
     Route::resource('agenda', AgendaController::class);
     Route::resource('berita', PostController::class);
+    Route::resource('gallery', GalleryController::class);
 });
 
 

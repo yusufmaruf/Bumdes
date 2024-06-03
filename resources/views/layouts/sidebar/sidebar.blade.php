@@ -132,8 +132,8 @@
                     <div data-i18n="Profile">Profile</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/gallery*') ? 'active' : '' }}">
+                <a href="{{ route('admin.gallery.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Gallery">Gallery</div>
                 </a>
