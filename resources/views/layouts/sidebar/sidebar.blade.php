@@ -87,8 +87,8 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/berita*') ? 'active' : '' }}">
+                <a href="{{ route('admin.berita.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-news"></i>
                     <div data-i18n="Berita"> Berita</div>
                 </a>
