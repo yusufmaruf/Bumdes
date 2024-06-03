@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\BumdesController;
-use App\Http\Controllers\CategoryPostController;
-use App\Http\Controllers\JenisUsahaController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReportPurchaseAdminController;
-use App\Http\Controllers\UserController;
-use App\Models\CategoryPost;
 use GuzzleHttp\Middleware;
+use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BumdesController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JenisUsahaController;
+use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\ReportPurchaseAdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('reportpurchaseadmin', ReportPurchaseAdminController::class);
     Route::resource('reportsalesadmin', ReportPurchaseAdminController::class);
     Route::resource('reportAdmin', ReportPurchaseAdminController::class);
+    Route::resource('agenda', AgendaController::class);
 });
 
 

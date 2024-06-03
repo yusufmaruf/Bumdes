@@ -74,8 +74,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Kegiatan</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/agenda*') ? 'active' : '' }}">
+                <a href="{{ route('admin.agenda.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-calendar"></i>
                     <div data-i18n="Agenda"> Agenda</div>
                 </a>
