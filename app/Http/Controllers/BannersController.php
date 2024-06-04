@@ -10,9 +10,24 @@ class BannersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = banners::orderBy('created_at', 'desc')->get();
+            return datatables()
+                ->of($data)
+                ->addIndexColumn()
+                ->addColumn('aksi', function ($data) {
+                    return view('layouts.pages.admin.Banner.tombol', ['data' => $data]);
+                })
+                ->addColumn('image', function ($data) {
+                    return '<img src="' . asset($data->images) . '" alt="" width="32px" height="22px" srcset="">';
+                })
+                ->rawColumns(['aksi', 'image'])
+                ->make(true);
+        }
+
+        return view('layouts.pages.admin.Banner.index');
     }
 
     /**
@@ -20,7 +35,7 @@ class BannersController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.pages.admin.Banner.create');
     }
 
     /**

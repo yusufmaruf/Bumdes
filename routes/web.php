@@ -5,6 +5,7 @@ use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BannersController;
 use App\Http\Controllers\BumdesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JenisUsahaController;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('agenda', AgendaController::class);
     Route::resource('berita', PostController::class);
     Route::resource('gallery', GalleryController::class);
+    Route::resource('banner', BannersController::class);
 });
 
 

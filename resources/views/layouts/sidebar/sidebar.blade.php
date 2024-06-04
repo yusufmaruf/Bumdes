@@ -102,8 +102,8 @@
                     <div data-i18n="Visi Misi"> Visi Misi</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/banner*') ? 'active' : '' }}">
+                <a href="{{ route('admin.banner.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Banner">Banner</div>
                 </a>
