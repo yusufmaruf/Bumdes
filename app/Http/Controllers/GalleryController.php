@@ -12,7 +12,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.client.galeri.galeri-kegiatan');
     }
 
     /**
@@ -36,7 +36,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        //
+        return view('pages.client.galeri.galeri-video');
     }
 
     /**
