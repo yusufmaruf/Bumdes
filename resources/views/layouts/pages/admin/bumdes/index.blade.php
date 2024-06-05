@@ -69,7 +69,12 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('admin.bumdes.index') }}',
+                    if (auth() - > user() - > role == 'admin') {
+                        url: '{{ route('admin.bumdes.index') }}',
+                    }
+                    else {
+                        url: {{ route('user.bumdesUser.index') }},
+                    }
                 },
                 columns: [{
                     data: 'DT_RowIndex',

@@ -13,13 +13,19 @@ class ReportPurchaseAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transaction::where('category', 'pengeluaran')->orderBy('created_at', 'desc')->get();
+            if (auth()->user()->role == 'admin') {
+                $data = Transaction::where('category', 'pengeluaran')->orderBy('created_at', 'desc')->get();
+            } else {
+                $idbumdes = Transaction::where('idUser', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+                $data = Transaction::where('idBumdes', $idbumdes->idBumdes)->orderBy('created_at', 'desc')->get();
+            }
+
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        return view('layouts.pages.admin.ReportPurchase.index');
     }
 
     /**

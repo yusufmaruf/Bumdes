@@ -15,7 +15,11 @@ class BumdesController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $bumdes = Bumdes::orderBy('created_at', 'desc')->get();
+            if (auth()->user()->role == 'admin') {
+                $bumdes = Bumdes::orderBy('created_at', 'desc')->get();
+            } else {
+                $bumdes = Bumdes::where('idUser', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+            }
             return datatables()
                 ->of($bumdes)
                 ->addIndexColumn()

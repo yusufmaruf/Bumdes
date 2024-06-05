@@ -13,7 +13,12 @@ class ReportAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transaction::orderBy('created_at', 'desc')->get();
+            if (auth()->user()->role == 'admin') {
+                $data = Transaction::orderBy('created_at', 'desc')->get();
+            } else {
+                $idbumdes = Transaction::where('idUser', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+                $data = Transaction::whereIn('idBumdes', $idbumdes->idBumdes)->orderBy('created_at', 'desc')->get();
+            }
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
@@ -34,7 +39,7 @@ class ReportAdminController extends Controller
                 ->rawColumns(['pemasukan', 'pengeluaran'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportPurchase.index');
+        return view('layouts.pages.admin.ReportAdmin.index');
     }
 
     /**

@@ -16,10 +16,11 @@
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pengguna.update', ['pengguna' => $data->id]) }}" id="basic-form"
-                        method="post" novalidate enctype="multipart/form-data">
-                        @method('PUT')
+                    <form
+                        action="{{ auth()->user()->role == 'admin' ? route('admin.profilepengguna.update', $data->id) : route('user.profilepengguna.update', $data->id) }}"
+                        id="basic-form" method="post" novalidate enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="">Name</label>
                             <input required type="text" name="name" id="" class="form-control"
@@ -34,22 +35,22 @@
                             <label for="">Password</label>
                             <span class="text-danger font-weight-light text-sm  font-italic">(Masukkan password untuk
                                 merubahnya.)</span>
-                            <input required type="password" name="password" id="" class="form-control">
+                            <input type="password" name="password" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="">Phone</label>
-                            <input required type="text" name="phone" id="" class="form-control"
+                            <input type="text" name="phone" id="" class="form-control"
                                 value="{{ $data->phone }}">
                         </div>
                         <div class="mb-3">
                             <img src="" alt="">
                             <label for="">Photo</label>
-                            <input required type="file" name="photo" id="" class="form-control">
+                            <input type="file" name="photo" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="price">address</label>
                             <input type="text" name="address" id="price" class="form-control"
-                                value="{{ $data->address }}" required>
+                                value="{{ $data->address }}">
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Gender</label>

@@ -29,7 +29,7 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Pengguna</span>
             </li>
-            <li class="menu-item {{ request()->is('admin/penggun*') ? 'active' : '' }}">
+            <li class="menu-item {{ request()->is('admin/pengguna*') ? 'active' : '' }}">
                 <a href="{{ route('admin.pengguna.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     <div data-i18n="User">Pengguna</div>
@@ -120,8 +120,8 @@
                     <div data-i18n="Sosial Media">Social Media</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('admin/pengguna/*/edit') ? 'active' : '' }}">
-                <a href="{{ route('admin.pengguna.edit', Auth::user()->id) }}" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/profileadmin/*/edit') ? 'active' : '' }}">
+                <a href="{{ route('admin.profileadmin.edit', Auth::user()->id) }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Profile">Profile</div>
                 </a>
@@ -136,8 +136,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Unit Usaha</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('User/bumdesUser*') ? 'active' : '' }}">
+                <a href="{{ route('user.bumdesUser.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-building-store"></i>
                     <div data-i18n="Unit Usaha">Unit Usaha</div>
                 </a>
@@ -145,20 +145,20 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Transaksi</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('User/reportUser*') ? 'active' : '' }}">
+                <a href="{{ route('user.reportUser.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-cash"></i>
                     <div data-i18n="Semua Transaksi">Semua Transaksi</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('User/reportsalesuser*') ? 'active' : '' }}">
+                <a href="{{ route('user.reportsalesuser.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-plus"></i>
                     <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('User/reportpurchaseuser*') ? 'active' : '' }}">
+                <a href="{{ route('user.reportpurchaseuser.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
                     <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
                 </a>
@@ -166,10 +166,10 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Setting</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-users"></i>
-                    <div data-i18n="Profil Pengguna"> Profil Pengguna</div>
+            <li class="menu-item {{ request()->is('User/penggunaupdateuser/*/edit') ? 'active' : '' }}">
+                <a href="{{ route('user.penggunaupdateuser.edit', Auth::user()->id) }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="Profile">Profile</div>
                 </a>
             </li>
         @endif
