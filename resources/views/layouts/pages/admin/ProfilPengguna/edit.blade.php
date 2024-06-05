@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Edit data Pengguna</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Pengguna</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
@@ -16,9 +16,8 @@
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pengguna.update', ['pengguna' => $data->id]) }}" id="basic-form"
-                        method="post" novalidate enctype="multipart/form-data">
-                        @method('PUT')
+                    <form action="{{ route('admin.pengguna.store') }}" id="basic-form" method="post" novalidate
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="">Name</label>
