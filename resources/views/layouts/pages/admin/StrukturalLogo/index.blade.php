@@ -17,20 +17,19 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Visi, Misi, Regulasi</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Struktural Logo</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Data Visi, Misi, Regulasi</h5>
+                    <h5 class="card-title mb-0">Data Struktural Logo</h5>
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <table class="table table-dt">
                     <thead>
                         <tr>
-                            <th>Visi</th>
-                            <th>Misi</th>
-                            <th>Regulasi</th>
+                            <th>Struktural</th>
+                            <th>Logo</th>
                             <th style="max-width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -57,24 +56,19 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('admin.visimisi.index') }}',
+                    url: '{{ route('admin.struktural.index') }}',
                 },
                 columns: [{
-                        data: 'visi',
-                        name: 'visi',
-                    }, {
-                        data: 'misi',
-                        name: 'misi',
-                    },
-                    {
-                        data: 'regulasi',
-                        name: 'regulasi',
-                    }, {
-                        data: 'aksi',
-                        orderable: false,
-                        searchable: false,
-                    }
-                ],
+                    data: 'gambarStruktur',
+                    name: 'gambarStruktur',
+                }, {
+                    data: 'logo',
+                    name: 'logo',
+                }, {
+                    data: 'aksi',
+                    orderable: false,
+                    searchable: false,
+                }],
             });
         });
     </script>

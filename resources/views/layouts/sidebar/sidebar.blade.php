@@ -99,7 +99,7 @@
             <li class="menu-item {{ request()->is('admin/visimisi*') ? 'active' : '' }}">
                 <a href="{{ route('admin.visimisi.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Visi Misi"> Visi Misi</div>
+                    <div data-i18n="Visi, Misi, Regulasi"> Visi, Misi, Regulasi</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('admin/banner*') ? 'active' : '' }}">
@@ -108,22 +108,16 @@
                     <div data-i18n="Banner">Banner</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/struktural*') ? 'active' : '' }}">
+                <a href="{{ route('admin.struktural.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Struktural">Struktural</div>
+                    <div data-i18n="Struktural, Logo">Struktural, Logo</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
                 <a href="" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Sosial Media">Social Media</div>
-                </a>
-            </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Regulasi">Regulasi</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SiteIdentity;
 use Illuminate\Http\Request;
 
-class VisiMisiController extends Controller
+class StrukturalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +18,18 @@ class VisiMisiController extends Controller
                 ->of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function ($data) {
-                    return view('layouts.pages.admin.VisiMisi.tombol', ['data' => $data]);
+                    return view('layouts.pages.admin.StrukturalLogo.tombol', ['data' => $data]);
                 })
-                ->addColumn('visi', function ($data) {
-                    return substr($data->visi, 0, 50) . '...';
+                ->addColumn('gambarStruktur', function ($data) {
+                    return '<img src="' . asset($data->gambarStruktur) . '" alt="" width="32px" height="22px" srcset="">';
                 })
-                ->addColumn('misi', function ($data) {
-                    return substr($data->misi, 0, 50) . '...';
+                ->addColumn('logo', function ($data) {
+                    return '<img src="' . asset($data->logo) . '" alt="" width="32px" height="22px" srcset="">';
                 })
-                ->addColumn('regulasi', function ($data) {
-                    return substr($data->regulasi, 0, 50) . '...';
-                })
-                ->rawColumns(['aksi', 'visi', 'misi', 'regulasi'])
+                ->rawColumns(['aksi', 'gambarStruktur', 'logo'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.VisiMisi.index');
+        return view('layouts.pages.admin.StrukturalLogo.index');
     }
 
     /**
@@ -62,10 +59,9 @@ class VisiMisiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        $data = SiteIdentity::where('idSiteIdentity', $id)->first();
-        return view('layouts.pages.admin.VisiMisi.edit', ['data' => $data]);
+        //
     }
 
     /**

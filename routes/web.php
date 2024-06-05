@@ -14,6 +14,7 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\ReportPurchaseAdminController;
+use App\Http\Controllers\StrukturalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('gallery', GalleryController::class);
     Route::resource('banner', BannersController::class);
     Route::resource('visimisi', VisiMisiController::class);
+    Route::resource('struktural', StrukturalController::class);
 });
 
 
