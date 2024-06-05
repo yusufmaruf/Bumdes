@@ -120,8 +120,8 @@
                     <div data-i18n="Sosial Media">Social Media</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/pengguna/*/edit') ? 'active' : '' }}">
+                <a href="{{ route('admin.pengguna.edit', Auth::user()->id) }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Profile">Profile</div>
                 </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class editProfilPengguna extends Controller
@@ -41,9 +42,10 @@ class editProfilPengguna extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data = User::find($id);
+        return view('admin.edit', compact('data'));
     }
 
     /**

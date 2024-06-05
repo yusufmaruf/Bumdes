@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\editProfilPengguna;
 use App\Http\Controllers\ReportPurchaseAdminController;
 use App\Http\Controllers\SosialMediaController;
 use App\Http\Controllers\StrukturalController;
@@ -47,6 +48,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('struktural', StrukturalController::class);
     Route::resource('sosialmedia', SosialMediaController::class);
+    Route::resource('profilepengguna', editProfilPengguna::class);
 });
 
 
