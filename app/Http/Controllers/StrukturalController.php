@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
+use App\Models\SiteIdentity;
 use Illuminate\Http\Request;
 
-class ReportPurchaseAdminController extends Controller
+class StrukturalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +13,23 @@ class ReportPurchaseAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transaction::where('category', 'pengeluaran')->orderBy('created_at', 'desc')->get();
+            $data = SiteIdentity::latest()->get();
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
+                ->addColumn('aksi', function ($data) {
+                    return view('layouts.pages.admin.StrukturalLogo.tombol', ['data' => $data]);
+                })
+                ->addColumn('gambarStruktur', function ($data) {
+                    return '<img src="' . asset($data->gambarStruktur) . '" alt="" width="32px" height="22px" srcset="">';
+                })
+                ->addColumn('logo', function ($data) {
+                    return '<img src="' . asset($data->logo) . '" alt="" width="32px" height="22px" srcset="">';
+                })
+                ->rawColumns(['aksi', 'gambarStruktur', 'logo'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        return view('layouts.pages.admin.StrukturalLogo.index');
     }
 
     /**

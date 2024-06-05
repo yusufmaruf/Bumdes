@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class ReportPurchaseAdminController extends Controller
+class ReportSalesAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class ReportPurchaseAdminController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        return view('layouts.pages.admin.ReportPurchase.index');
     }
 
     /**

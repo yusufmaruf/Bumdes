@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
+use App\Models\SiteIdentity;
 use Illuminate\Http\Request;
 
-class ReportPurchaseAdminController extends Controller
+class VisiMisiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +13,26 @@ class ReportPurchaseAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transaction::where('category', 'pengeluaran')->orderBy('created_at', 'desc')->get();
+            $data = SiteIdentity::latest()->get();
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
+                ->addColumn('aksi', function ($data) {
+                    return view('layouts.pages.admin.VisiMisi.tombol', ['data' => $data]);
+                })
+                ->addColumn('visi', function ($data) {
+                    return substr($data->visi, 0, 50) . '...';
+                })
+                ->addColumn('misi', function ($data) {
+                    return substr($data->misi, 0, 50) . '...';
+                })
+                ->addColumn('regulasi', function ($data) {
+                    return substr($data->regulasi, 0, 50) . '...';
+                })
+                ->rawColumns(['aksi', 'visi', 'misi', 'regulasi'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        return view('layouts.pages.admin.VisiMisi.index');
     }
 
     /**
@@ -49,9 +62,10 @@ class ReportPurchaseAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data = SiteIdentity::where('idSiteIdentity', $id)->first();
+        return view('layouts.pages.admin.VisiMisi.edit', ['data' => $data]);
     }
 
     /**

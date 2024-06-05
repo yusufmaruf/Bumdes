@@ -10,9 +10,35 @@ class AgendaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Agenda::orderBy('created_at', 'desc')->get();
+            return datatables()
+                ->of($data)
+                ->addIndexColumn()
+                ->addColumn('aksi', function ($data) {
+                    return view('layouts.pages.admin.agenda.tombol', ['data' => $data]);
+                })
+                ->addColumn('image', function ($data) {
+                    return '<img src="' . asset($data->photo) . '" alt="" width="32px" height="22px" srcset="">';
+                })
+                ->addColumn('date', function ($data) {
+                    return date('d F Y', strtotime($data->date));
+                })
+                ->addColumn('waktuMulai', function ($data) {
+                    return date('H:i', strtotime($data->waktuMulai));
+                })
+                ->addColumn('waktuSelesai', function ($data) {
+                    return date('H:i', strtotime($data->waktuSelesai));
+                })
+                ->addColumn('description', function ($data) {
+                    return substr($data->description, 0, 50) . '...';
+                })
+                ->rawColumns(['aksi', 'image', 'date', 'waktuMulai', 'waktuSelesai', 'description'])
+                ->make(true);
+        }
+        return view('layouts.pages.admin.agenda.index');
     }
 
     /**
@@ -20,7 +46,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.pages.admin.agenda.create');
     }
 
     /**

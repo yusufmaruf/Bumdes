@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SiteIdentity;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(CategoryPostSeeder::class);
         $this->call(JenisUsahaSeeder::class);
+        $this->call(SiteIdentitySeeder::class);
     }
 }

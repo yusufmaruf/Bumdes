@@ -53,19 +53,19 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Transaksi</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/reportAdmin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reportAdmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-cash"></i>
                     <div data-i18n="Semua Transaksi">Semua Transaksi</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/reportsalesadmin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reportsalesadmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-plus"></i>
                     <div data-i18n="Transaksi Masuk"> Transaksi Masuk</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('/admin/reportpurchaseadmin*') ? 'active' : '' }}">
+            <li class="menu-item {{ request()->is('admin/reportpurchaseadmin*') ? 'active' : '' }}">
                 <a href="{{ route('admin.reportpurchaseadmin.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-shopping-cart-minus"></i>
                     <div data-i18n="Transaksi Keluar"> Transaksi Keluar</div>
@@ -74,8 +74,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Kegiatan</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/agenda*') ? 'active' : '' }}">
+                <a href="{{ route('admin.agenda.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-calendar"></i>
                     <div data-i18n="Agenda"> Agenda</div>
                 </a>
@@ -87,8 +87,8 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/berita*') ? 'active' : '' }}">
+                <a href="{{ route('admin.berita.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-news"></i>
                     <div data-i18n="Berita"> Berita</div>
                 </a>
@@ -96,22 +96,22 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Website</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/visimisi*') ? 'active' : '' }}">
+                <a href="{{ route('admin.visimisi.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Visi Misi"> Visi Misi</div>
+                    <div data-i18n="Visi, Misi, Regulasi"> Visi, Misi, Regulasi</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/banner*') ? 'active' : '' }}">
+                <a href="{{ route('admin.banner.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Banner">Banner</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/struktural*') ? 'active' : '' }}">
+                <a href="{{ route('admin.struktural.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Struktural">Struktural</div>
+                    <div data-i18n="Struktural, Logo">Struktural, Logo</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
@@ -123,17 +123,11 @@
             <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
                 <a href="" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                    <div data-i18n="Regulasi">Regulasi</div>
-                </a>
-            </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Profile">Profile</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/gallery*') ? 'active' : '' }}">
+                <a href="{{ route('admin.gallery.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Gallery">Gallery</div>
                 </a>
