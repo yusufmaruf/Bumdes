@@ -14,7 +14,9 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\editProfilPengguna;
+use App\Http\Controllers\ReportAdminController;
 use App\Http\Controllers\ReportPurchaseAdminController;
+use App\Http\Controllers\ReportSalesAdminController;
 use App\Http\Controllers\SosialMediaController;
 use App\Http\Controllers\StrukturalController;
 
@@ -39,8 +41,8 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('pengguna', UserController::class);
     Route::resource('bumdes', BumdesController::class);
     Route::resource('reportpurchaseadmin', ReportPurchaseAdminController::class);
-    Route::resource('reportsalesadmin', ReportPurchaseAdminController::class);
-    Route::resource('reportAdmin', ReportPurchaseAdminController::class);
+    Route::resource('reportsalesadmin', ReportSalesAdminController::class);
+    Route::resource('reportAdmin', ReportAdminController::class);
     Route::resource('agenda', AgendaController::class);
     Route::resource('berita', PostController::class);
     Route::resource('gallery', GalleryController::class);
@@ -49,6 +51,15 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('struktural', StrukturalController::class);
     Route::resource('sosialmedia', SosialMediaController::class);
     Route::resource('profilepengguna', editProfilPengguna::class);
+    Route::resource('profileadmin', editProfilPengguna::class);
+});
+
+Route::middleware(['auth', 'verified', 'isUser'])->prefix('User')->name('user.')->group(function () {
+    Route::resource('bumdesUser', BumdesController::class);
+    Route::resource('reportUser', ReportAdminController::class);
+    Route::resource('reportsalesuser', ReportSalesAdminController::class);
+    Route::resource('reportpurchaseuser', ReportPurchaseAdminController::class);
+    Route::resource('penggunaupdateuser', UserController::class);
 });
 
 

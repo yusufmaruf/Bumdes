@@ -75,7 +75,11 @@
                 autoWidth: false,
 
                 ajax: {
-                    url: '{{ route('admin.reportpurchaseadmin.index') }}',
+                    url: if (auth() - > user() - > role == 'admin') {
+                        '{{ route('admin.reportpurchaseadmin.index') }}'
+                    } else {
+                        '{{ route('user.reportpurchaseuser.index') }}'
+                    }
                     data: function(d) {
                         d.dari = $('#dari').val(); // Ambil nilai tanggal dari input "dari"
                         d.sampai = $('#sampai').val(); // Ambil nilai tanggal dari input "sampai"
