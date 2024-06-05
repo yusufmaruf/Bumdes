@@ -96,8 +96,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Website</span>
             </li>
-            <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
-                <a href="" class="menu-link">
+            <li class="menu-item {{ request()->is('admin/visimisi*') ? 'active' : '' }}">
+                <a href="{{ route('admin.visimisi.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="Visi Misi"> Visi Misi</div>
                 </a>
