@@ -53,8 +53,8 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Role</label>
                             <select name="role" id="select2Role" class="select2 form-select form-select form-control">
-                                <option value="Admin">Admin</option>
-                                <option value="User">User</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
                             </select>
                         </div>
 

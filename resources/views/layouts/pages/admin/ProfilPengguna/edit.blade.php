@@ -41,7 +41,7 @@
                                 value="{{ $data->phone }}">
                         </div>
                         <div class="mb-3">
-                            <img src="" alt="">
+                            <img src="{{ asset($data->photo) }}" alt="">
                             <label for="">Photo</label>
                             <input required type="file" name="photo" id="" class="form-control">
                         </div>
