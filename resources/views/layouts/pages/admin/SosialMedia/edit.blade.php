@@ -18,6 +18,7 @@
                 <div class="card-body">
                     <form action="{{ route('admin.sosialmedia.update', ['sosialmedia' => $data->idSiteIdentity]) }}"
                         id="basic-form" method="post" novalidate enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label for="">Instagram</label>

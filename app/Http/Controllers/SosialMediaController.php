@@ -62,9 +62,11 @@ class SosialMediaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
+        $data = SiteIdentity::find($id);
+        $data->update($request->all());
+        return redirect()->route('admin.sosialmedia.index')->with('success_message_update', 'Data Sosial Media Berhasil');
     }
 
     /**

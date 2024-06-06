@@ -18,18 +18,19 @@
                 <div class="card-body">
                     <form action="{{ route('admin.visimisi.update', ['visimisi' => $data->idSiteIdentity]) }}"
                         id="basic-form" method="post" novalidate enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Visi</label>
-                            <textarea id="summernotevisi" name="visi" class="form-control" value="{{ $data->visi }}"></textarea>
+                            <textarea id="summernotevisi" name="visi" class="form-control">{{ $data->visi }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Misi</label>
-                            <textarea id="summernotemisi" name="misi" class="form-control" value="{{ $data->misi }}"></textarea>
+                            <textarea id="summernotemisi" name="misi" class="form-control" value="">{{ $data->misi }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Regulasi</label>
-                            <textarea id="summernoteregulasi" name="regulasi" class="form-control" value="{{ $data->regulasi }}"></textarea>
+                            <textarea id="summernoteregulasi" name="regulasi" class="form-control" value="">{{ $data->regulasi }}</textarea>
                         </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>
