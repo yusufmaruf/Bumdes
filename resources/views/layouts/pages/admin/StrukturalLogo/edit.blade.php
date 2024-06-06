@@ -16,16 +16,28 @@
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.visimisi.update', ['visimisi' => $data->idSiteIdentity]) }}"
+                    <form action="{{ route('admin.struktural.update', ['struktural' => $data->idSiteIdentity]) }}"
                         id="basic-form" method="post" novalidate enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">visi</label>
-                            <textarea id="summernotevisi" name="visi" class="form-control" value="{{ $data->visi }}"></textarea>
+                            <label for="">Photo</label> <span
+                                class="text-danger font-weight-light text-sm  font-italic">(Masukkan Gambar Struktur baru
+                                jika ingin
+                                untuk
+                                merubahnya.)</span> <br>
+                            <img src="{{ asset($data->gambarStruktur) }}" class="img-thumbnail mt-3 mb-3" alt=""
+                                width="100px" height="100px">
+                            <input type="file" name="gambarStruktur" id="" class="form-control mt-2">
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">misi</label>
-                            <textarea id="summernotemisi" name="visi" class="form-control" value="{{ $data->misi }}"></textarea>
+                            <label for="">logo</label> <span
+                                class="text-danger font-weight-light text-sm  font-italic">(Masukkan photo baru jika ingin
+                                untuk
+                                merubahnya.)</span> <br>
+                            <img src="{{ asset($data->logo) }}" class="img-thumbnail mt-3 mb-3" alt=""
+                                width="100px" height="100px">
+                            <input type="file" name="logo" id="" class="form-control mt-2">
                         </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>

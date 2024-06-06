@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body">
                     <form
-                        action="{{ auth()->user()->role == 'admin' ? route('admin.profilepengguna.update', $data->id) : route('user.profilepengguna.update', $data->id) }}"
+                        action="{{ auth()->user()->role == 'admin' ? route('admin.pengguna.update', $data->id) : route('user.profilepengguna.update', $data->id) }}"
                         id="basic-form" method="post" novalidate enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -33,7 +33,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Password</label>
-                            <span class="text-danger font-weight-light text-sm  font-italic">(Masukkan password untuk
+                            <span class="text-danger font-weight-light text-sm  font-italic">(Masukkan password jika ingin
                                 merubahnya.)</span>
                             <input type="password" name="password" id="" class="form-control">
                         </div>
@@ -43,9 +43,13 @@
                                 value="{{ $data->phone }}">
                         </div>
                         <div class="mb-3">
-                            <img src="" alt="">
-                            <label for="">Photo</label>
-                            <input type="file" name="photo" id="" class="form-control">
+                            <label for="">Photo</label> <span
+                                class="text-danger font-weight-light text-sm  font-italic">(Masukkan photo baru jika ingin
+                                untuk
+                                merubahnya.)</span> <br>
+                            <img src="{{ asset($data->photo) }}" class="img-thumbnail mt-3 mb-3" alt=""
+                                width="100px" height="100px">
+                            <input type="file" name="photo" id="" class="form-control mt-2">
                         </div>
                         <div class="mb-3">
                             <label for="price">address</label>

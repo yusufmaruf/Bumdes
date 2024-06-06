@@ -35,6 +35,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Role</th>
                             <th>email</th>
                             <th>phone</th>
                             <th>address</th>
@@ -75,6 +76,8 @@
                     data: 'name',
                     name: 'name',
                 }, {
+                    data: 'role',
+                }, {
                     data: 'email',
                     name: 'email',
                 }, {
@@ -84,7 +87,7 @@
                 }, {
                     data: 'gender',
                 }, {
-                    data: 'photo',
+                    data: 'image',
                 }, {
                     data: 'aksi',
                     orderable: false,

@@ -71,9 +71,15 @@ class VisiMisiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
+        $data = SiteIdentity::where('idSiteIdentity', $id)->first();
+        $data->update([
+            'visi' => $request->visi,
+            'misi' => $request->misi,
+            'regulasi' => $request->regulasi
+        ]);
+        return redirect()->route('admin.visimisi.index')->with('success_message_update', 'Data Visi dan Misi Berhasil');
     }
 
     /**

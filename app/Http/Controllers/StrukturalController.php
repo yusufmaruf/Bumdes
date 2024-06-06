@@ -59,17 +59,48 @@ class StrukturalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data = SiteIdentity::where('idSiteIdentity', $id)->first();
+        return view('layouts.pages.admin.StrukturalLogo.edit', ['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
+        $request->validate([
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'gambarStruktur' => 'required|image|mimes:png,jpg,jpeg,gif,svg',
+        ]);
+        $site = SiteIdentity::where('idSiteIdentity', $id)->first();
+        $data = $request->all();
+        if ($request->hasFile('logo')) {
+            if ($site->logo && file_exists(public_path($site->logo))) {
+                unlink(public_path($site->logo));
+            }
+            $file = $request->file('logo');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/logo'), $filename);
+            $data['logo'] = '/store/logo/' . $filename;
+        }
+        if ($request->hasFile('gambarStruktur')) {
+            if ($site->gambarStruktur && file_exists(public_path($site->gambarStruktur))) {
+                unlink(public_path($site->gambarStruktur));
+            }
+            $file = $request->file('gambarStruktur');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/gambarStruktur'), $filename);
+            $data['gambarStruktur'] = '/store/gambarStruktur/' . $filename;
+        }
+
+        $site->update($data);
+        return redirect()->route('admin.struktural.index')->with('success_message', 'Data Berhasil Diperbarui');
     }
 
     /**
