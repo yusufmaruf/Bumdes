@@ -84,32 +84,69 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $data = Post::where('idPost', $id)->first();
+        return response()->json(['result' => $data], 200);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $data = Post::find($id)->with(['categoryPost', 'user'])->first();
+        $category = CategoryPost::all();
+        return view('layouts.pages.admin.berita.edit', ['data' => $data, 'category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'images' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'idCategoryPost' => 'required',
+        ]);
+        $data = $request->all();
+        $data['slug'] = str_replace(' ', '-', $request->title);
+        if ($request->hasFile('images')) {
+            if ($post->images && file_exists(public_path($post->images))) {
+                unlink(public_path($post->images));
+            }
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/postPhoto'), $filename);
+            $data['images'] = '/store/postPhoto/' . $filename;
+        }
+        $post->update($data);
+        if ($post) {
+            return redirect()->route('admin.berita.index')->with('success_message_update', 'Data Berhasil Diupdate');
+        } else {
+            return redirect()->route('admin.berita.index')->with('error_message_update', 'Data Gagal Diupdate');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        if ($post->images && file_exists(public_path($post->images))) {
+            unlink(public_path($post->images));
+        }
+        $post->delete();
+        if ($post) {
+            return redirect()->route('admin.berita.index')->with('success_message_delete', 'Data Berhasil Dihapus');
+        } else {
+            return redirect()->route('admin.berita.index')->with('error_message_delete', 'Data Gagal Dihapus');
+        }
     }
 }
