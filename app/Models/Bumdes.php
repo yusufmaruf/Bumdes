@@ -21,4 +21,14 @@ class Bumdes extends Model
         'phoneNumber',
         'email'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser', 'id');
+    }
+
+    public function jenisUsaha()
+    {
+        return $this->belongsTo(JenisUsaha::class, 'idJenisUsaha', 'idJenisUsaha');
+    }
 }

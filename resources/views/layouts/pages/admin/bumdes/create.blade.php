@@ -41,7 +41,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Phone</label>
-                            <input type="text" name="phone" id="" class="form-control">
+                            <input type="text" name="phoneNumber" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="price">Email</label>
@@ -49,10 +49,20 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label ">Jenis Usaha <span style="color: red">*</span></label>
-                            <select required name="role" id="select2Role"
+                            <select required name="idJenisUsaha" id="select2Role"
                                 class="select2 form-select form-select form-control">
                                 @foreach ($data as $item)
                                     <option value="{{ $item->idJenisUsaha }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label ">Penangung Jawab <span
+                                    style="color: red">*</span></label>
+                            <select required name="idUser" id="select2User"
+                                class="select2 form-select form-select form-control">
+                                @foreach ($user as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -74,7 +84,7 @@
     <script>
         $(function() {
             $('#summernote').summernote()
-            $('#select2basic').select2({
+            $('#select2User').select2({
                 placeholder: 'Pilih Gender',
             })
             $('#select2Role').select2({
