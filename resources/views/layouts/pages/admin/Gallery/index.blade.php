@@ -34,9 +34,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Name</th>
                             <th>Foto</th>
-                            <th>Vidio</th>
-                            <th>Link</th>
+                            <th>Link Vidio</th>
                             <th style="max-width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -70,9 +70,8 @@
                     data: 'DT_RowIndex',
                 }, {
                     data: 'name',
-                    name: 'name',
                 }, {
-                    data: 'photo',
+                    data: 'image',
                 }, {
                     data: 'vidio',
                 }, {

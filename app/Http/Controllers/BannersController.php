@@ -18,7 +18,7 @@ class BannersController extends Controller
                 ->of($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function ($data) {
-                    return view('layouts.pages.admin.Banner.tombol', ['data' => $data]);
+                    return view('layouts.pages.admin.banner.tombol', ['data' => $data]);
                 })
                 ->addColumn('image', function ($data) {
                     return '<img src="' . asset($data->images) . '" alt="" width="32px" height="22px" srcset="">';
@@ -43,38 +43,84 @@ class BannersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+        ]);
+        $data = $request->all();
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/banner'), $filename);
+            $data['images'] = '/store/banner/' . $filename;
+        }
+        $user = banners::create($data);
+        if ($user) {
+            return redirect()->route('admin.banner.index')->with('success_messages_create', 'Banner Berhasil dibuat');
+        } else {
+            return redirect()->route('admin.banner.index')->with('error_messages_create', 'Banner Gagal dibuat');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(banners $banners)
+    public function show($id)
     {
-        //
+        $data = banners::where('idBanner', $id)->first();
+        return response()->json(['result' => $data], 200);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(banners $banners)
+    public function edit($id)
     {
-        //
+        $data = banners::where('idBanner', $id)->first();
+        return view('layouts.pages.admin.Banner.edit', ['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, banners $banners)
+    public function update(Request $request, $id)
     {
-        //
+        $banner = banners::where('idBanner', $id)->first();
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $data = $request->all();
+        if ($request->hasFile('images')) {
+            if ($banner->images && file_exists(public_path($banner->images))) {
+                unlink(public_path($banner->images));
+            }
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/banner'), $filename);
+            $data['images'] = '/store/banner/' . $filename;
+        }
+        $banner->update($data);
+        if ($banner) {
+            return redirect()->route('admin.banner.index')->with('success_message_update', 'Banner Berhasil diupdate');
+        } else {
+            return redirect()->route('admin.banner.index')->with('error_message_update', 'Banner Gagal diupdate');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(banners $banners)
+    public function destroy($id)
     {
-        //
+        $data = banners::findOrFail($id);
+        if ($data->images && file_exists(public_path($data->images))) {
+            unlink(public_path($data->images));
+        }
+        $data->delete();
+        return redirect()->route('admin.banner.index')->with('success_messages_delete', 'Banner Berhasil dihapus');
     }
 }

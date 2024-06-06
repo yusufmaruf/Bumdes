@@ -17,12 +17,12 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Banner</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Pengguna</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Data Banner</h5>
+                    <h5 class="card-title mb-0">Data Pengguna</h5>
                     <!-- Move the button to the right using ml-auto -->
                     @if (auth()->user()->role == 'admin')
                         <a href="{{ route('admin.banner.create') }}" class="btn btn-primary ml-auto"><span
@@ -35,7 +35,7 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Foto</th>
+                            <th>Images</th>
                             <th style="max-width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.Banner.modalDelete')
+    @includeIf('layouts.pages.admin.banner.modalDelete')
 @endsection
 
 @push('script')
@@ -71,7 +71,7 @@
                     data: 'name',
                     name: 'name',
                 }, {
-                    data: 'images',
+                    data: 'image',
                 }, {
                     data: 'aksi',
                     orderable: false,
