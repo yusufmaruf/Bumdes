@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body">
                     <form
-                        action="{{ auth()->user()->role == 'admin' ? route('admin.pengguna.update', $data->id) : route('user.profilepengguna.update', $data->id) }}"
+                        action="{{ auth()->user()->role == 'admin' ? route('admin.profileadmin.update', $data->id) : route('user.profilepengguna.update', $data->id) }}"
                         id="basic-form" method="post" novalidate enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

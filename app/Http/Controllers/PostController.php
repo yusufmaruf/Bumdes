@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Post::orderBy('created_at', 'desc')->get();
+            $data = Post::orderBy('created_at', 'desc')->with(['categoryPost', 'user'])->get();
             return datatables()
                 ->of($data)
                 ->addIndexColumn()
@@ -30,7 +30,13 @@ class PostController extends Controller
                 ->addColumn('description', function ($data) {
                     return substr($data->body, 0, 50) . '...';
                 })
-                ->rawColumns(['aksi', 'image', 'date', 'description'])
+                ->addColumn('user', function ($data) {
+                    return $data->user->name;
+                })
+                ->addColumn('category', function ($data) {
+                    return $data->categoryPost->title;
+                })
+                ->rawColumns(['aksi', 'image', 'date', 'description', 'user', 'category'])
                 ->make(true);
         }
         return view('layouts.pages.admin.berita.index');
@@ -50,7 +56,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'idCategoryPost' => 'required',
+        ]);
+        $data = $request->all();
+        $data['slug'] = str_replace(' ', '-', $request->title);
+        $data['idUser'] = auth()->user()->id;
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '_' . time() . '.' . $extension;
+            $file->move(public_path('store/postPhoto'), $filename);
+            $data['images'] = '/store/postPhoto/' . $filename;
+        }
+        $post = Post::create($data);
+        if ($post) {
+            return redirect()->route('admin.berita.index')->with('success_message_create', 'Data Berhasil Ditambahkan');
+        } else {
+            return redirect()->route('admin.berita.index')->with('error_message_create', 'Data Gagal Ditambahkan');
+        }
     }
 
     /**

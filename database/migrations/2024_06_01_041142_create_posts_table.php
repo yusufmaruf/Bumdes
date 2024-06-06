@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('body');
             $table->integer('idUser');
-            $table->integer('images');
+            $table->string('images');
             $table->string('idCategoryPost');
             $table->timestamps();
         });
