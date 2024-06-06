@@ -40,6 +40,7 @@
                             <th>Lokasi</th>
                             <th>maps</th>
                             <th>jenis usaha</th>
+                            <th>Penanggung jawab</th>
                             <th>Nomor telephone</th>
                             <th>Email</th>
                             <th style="max-width: 10%;">Aksi</th>
@@ -69,12 +70,7 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    if (auth() - > user() - > role == 'admin') {
-                        url: '{{ route('admin.bumdes.index') }}',
-                    }
-                    else {
-                        url: {{ route('user.bumdesUser.index') }},
-                    }
+                    url: '{{ route('admin.bumdes.index') }}',
                 },
                 columns: [{
                     data: 'DT_RowIndex',
@@ -82,8 +78,7 @@
                     data: 'name',
                     name: 'name',
                 }, {
-                    data: 'desc',
-                    name: 'desc',
+                    data: 'description',
                 }, {
                     data: 'image'
                 }, {
@@ -91,7 +86,9 @@
                 }, {
                     data: 'maps',
                 }, {
-                    data: 'idJenisUsaha',
+                    data: 'jenisUsaha',
+                }, {
+                    data: 'user',
                 }, {
                     data: 'phoneNumber',
                 }, {

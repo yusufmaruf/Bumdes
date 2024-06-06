@@ -36,16 +36,12 @@
                             <input required type="text" name="location" id="" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="">tanggal</label>
-                            <input required type="date" name="date" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
                             <label for="">Waktu Mulai</label>
-                            <input required type="date" name="waktuMulai" id="" class="form-control">
+                            <input required type="datetime-local" name="waktuMulai" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="">Waktu Selesai</label>
-                            <input required type="date" name="waktuSelesai" id="" class="form-control">
+                            <input required type="datetime-local" name="waktuSelesai" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>

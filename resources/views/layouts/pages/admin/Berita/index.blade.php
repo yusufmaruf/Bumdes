@@ -109,7 +109,7 @@
 
                         // Create a new paragraph element with the updated class
                         var nameParagraph = $('<p>').addClass('namaPengguna').text('Nama: ' +
-                            response.result.name);
+                            response.result.title);
 
                         // Append the new paragraph to the existing content-data div
                         $('.content-data').append(nameParagraph);

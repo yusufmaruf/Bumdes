@@ -19,6 +19,5 @@ class Agenda extends Model
         'location',
         'waktuMulai',
         'waktuSelesai',
-        'tanggal',
     ];
 }
