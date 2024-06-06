@@ -20,11 +20,11 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="">Name</label>
+                            <label for="">Judul</label>
                             <input required type="text" name="title" id="" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="">Photo</label>
+                            <label for="">Gambar</label>
                             <input required type="file" name="images" id="" class="form-control">
                         </div>
                         <div class="mb-3">
@@ -32,12 +32,9 @@
                             <textarea id="summernote" name="body" class="form-control"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="">location</label>
-                            <input required type="text" name="location" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Role</label>
-                            <select name="role" id="select2Role" class="select2 form-select form-select form-control">
+                            <label for="name" class="form-label">Kategori</label>
+                            <select name="idCategoryPost" id="select2Role"
+                                class="select2 form-select form-select form-control">
                                 @foreach ($data as $item)
                                     {
                                     <option value="{{ $item->idCategoryPost }}">{{ $item->title }}</option>

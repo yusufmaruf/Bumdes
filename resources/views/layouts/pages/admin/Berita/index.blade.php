@@ -34,13 +34,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>photo</th>
-                            <th>desc</th>
                             <th>tanggal</th>
-                            <th>user</th>
-                            <th>category</th>
-                            <th>waktu terbit</th>
+                            <th>Judul</th>
+                            <th>Gambar</th>
+                            <th>Isi</th>
+                            <th>Kategori</th>
+                            <th>Penulis</th>
                             <th style="max-width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -73,21 +72,18 @@
                 columns: [{
                     data: 'DT_RowIndex',
                 }, {
-                    data: 'name',
-                    name: 'name',
+                    data: 'date',
+                }, {
+                    data: 'title',
                 }, {
                     data: 'image',
                     name: 'image',
                 }, {
-                    data: 'desc'
+                    data: 'description'
                 }, {
-                    data: 'location',
+                    data: 'category',
                 }, {
-                    data: 'date',
-                }, {
-                    data: 'idUser',
-                }, {
-                    data: 'idCategoryPost',
+                    data: 'user',
                 }, {
                     data: 'aksi',
                     orderable: false,
