@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Banner</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Pengguna</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
@@ -24,9 +24,10 @@
                             <input required type="text" name="name" id="" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="">Images</label>
+                            <label for="">Photo</label>
                             <input required type="file" name="images" id="" class="form-control">
                         </div>
+
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>
                         </div>
