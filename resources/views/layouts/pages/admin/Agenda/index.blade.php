@@ -34,11 +34,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
+                            <th>Judul</th>
                             <th>photo</th>
                             <th>desc</th>
                             <th>location</th>
-                            <th>tanggal</th>
                             <th>waktu mulai</th>
                             <th>waktu selesai</th>
                             <th style="max-width: 10%;">Aksi</th>
@@ -51,17 +50,19 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.pengguna.modalDelete')
+    @includeIf('layouts.pages.admin.Agenda.modalDelete')
 @endsection
 
 @push('script')
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
 
 
+
     <script>
         let table; // Declare table as a global variable
 
         $(document).ready(function() {
+
             table = $('.table').DataTable({
                 responsive: true,
                 processing: true,
@@ -79,11 +80,9 @@
                     data: 'image',
                     name: 'image',
                 }, {
-                    data: 'desc'
+                    data: 'description',
                 }, {
                     data: 'location',
-                }, {
-                    data: 'date',
                 }, {
                     data: 'waktuMulai',
                 }, {
@@ -94,6 +93,8 @@
                     searchable: false,
                 }],
             });
+
+
         });
     </script>
     <script>

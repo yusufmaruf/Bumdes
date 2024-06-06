@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('photo');
             $table->text('desc');
             $table->string('location');
-            $table->date('tanggal');
-            $table->time('waktuMulai');
-            $table->time('waktuSelesai');
+            $table->timestamp('waktuMulai');
+            $table->timestamp('waktuSelesai');
             $table->timestamps();
         });
     }
