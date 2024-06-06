@@ -16,7 +16,7 @@
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pengguna.store') }}" id="basic-form" method="post" novalidate
+                    <form action="{{ route('admin.gallery.store') }}" id="basic-form" method="post" novalidate
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
@@ -25,11 +25,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Photo</label>
-                            <input required type="file" name="photo" id="" class="form-control">
+                            <input type="file" name="photo" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="">vidio</label>
-                            <input required type="text" name="vidio" id="" class="form-control">
+                            <input type="text" name="vidio" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>

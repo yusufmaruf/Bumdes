@@ -16,8 +16,9 @@
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pengguna.store') }}" id="basic-form" method="post" novalidate
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.gallery.update', ['gallery' => $data->idGallery]) }}" id="basic-form"
+                        method="post" novalidate enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label for="">Name</label>
@@ -25,48 +26,18 @@
                                 value="{{ $data->name }}">
                         </div>
                         <div class="mb-3">
-                            <label for="">Email</label>
-                            <input required type="email" name="email" id="" class="form-control"
-                                value="{{ $data->email }}">
+                            <label for="">Photo</label> <span
+                                class="text-danger font-weight-light text-sm  font-italic">(Masukkan photo baru jika ingin
+                                untuk
+                                merubahnya.)</span> <br>
+                            <img src="{{ asset($data->photo) }}" class="img-thumbnail mt-3 mb-3" alt=""
+                                width="100px" height="100px">
+                            <input type="file" name="photo" id="" class="form-control mt-2">
                         </div>
                         <div class="mb-3">
-                            <label for="">Password</label>
-                            <span class="text-danger font-weight-light text-sm  font-italic">(Masukkan password untuk
-                                merubahnya.)</span>
-                            <input required type="password" name="password" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Phone</label>
-                            <input required type="text" name="phone" id="" class="form-control"
-                                value="{{ $data->phone }}">
-                        </div>
-                        <div class="mb-3">
-                            <img src="" alt="">
-                            <label for="">Photo</label>
-                            <input required type="file" name="photo" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="price">address</label>
-                            <input type="text" name="address" id="price" class="form-control"
-                                value="{{ $data->address }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Gender</label>
-                            <select name="gender" id="select2basic" class="select2 form-select form-select form-control">
-                                <option value="Laki - laki" @if ($data->gender == 'Laki - laki') selected @endif>Laki - laki
-                                </option>
-                                <option value="Perempuan" @if ($data->gender == 'Perempuan') selected @endif>Perempuan
-                                </option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Role</label>
-                            <select name="role" id="select2Role" class="select2 form-select form-select form-control">
-                                <option value="admin" @if ($data->role == 'admin') selected @endif>Admin
-                                </option>
-                                <option value="user" @if ($data->role == 'user') selected @endif>User
-                                </option>
-                            </select>
+                            <label for="">Vidio</label>
+                            <input required type="text" name="name" id="" class="form-control"
+                                value="{{ $data->vidio }}">
                         </div>
 
                         <div class="mb-3">
