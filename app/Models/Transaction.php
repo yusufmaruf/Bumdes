@@ -16,4 +16,9 @@ class Transaction extends Model
         'title',
         'total',
     ];
+
+    public function bumdes()
+    {
+        return $this->belongsTo(Bumdes::class, 'idBumdes', 'idBumdes');
+    }
 }
