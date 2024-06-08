@@ -7,45 +7,38 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Berita</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Data Penjualan</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Tambah Data Berita</h5>
+                    <h5 class="card-title mb-0">Tambah Data Penjualan</h5>
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.berita.store') }}" id="basic-form" method="post" novalidate
+                    <form action="{{ route('user.reportsalesuser.store') }}" id="basic-form" method="post" novalidate
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="">Name</label>
-                            <input required type="text" name="title" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Photo</label>
-                            <input required type="file" name="images" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Desc</label>
-                            <textarea id="summernote" name="body" class="form-control"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">location</label>
-                            <input required type="text" name="location" id="" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Role</label>
-                            <select name="role" id="select2Role" class="select2 form-select form-select form-control">
+                            <label for="name" class="form-label">Unit Usaha</label>
+                            <select name="idBumdes" id="select2basic" class="select2 form-select form-select form-control">
                                 @foreach ($data as $item)
-                                    {
-                                    <option value="{{ $item->idCategoryPost }}">{{ $item->title }}</option>
-                                    }
+                                    <option value="{{ $item->idBumdes }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="">tanggal</label>
+                            <input required type="date" name="tanggal" id="" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Title</label>
+                            <input required type="text" name="title" id="" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Total</label>
+                            <input required type="number" name="total" id="" class="form-control">
+                        </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>
                         </div>

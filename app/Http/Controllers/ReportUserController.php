@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Bumdes;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
 
-
-
-class ReportSalesAdminController extends Controller
+class ReportUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
+
     {
         if ($request->ajax()) {
-            $query = Transaction::with('bumdes')->orderBy('created_at', 'desc');
+            $idBumdes = Bumdes::where('idUser', auth()->user()->id)->pluck('idBumdes')->toArray();
+            $query = Transaction::with('bumdes')
+                ->orderBy('created_at', 'desc')
+                ->whereIn('idBumdes', $idBumdes);
 
             // Apply filters
             if ($request->has('bumdes') && !empty($request->bumdes)) {
@@ -37,6 +40,7 @@ class ReportSalesAdminController extends Controller
             })->map(function ($dayGroup) {
                 return $dayGroup->groupBy('idBumdes');
             });
+
             return datatables()
                 ->of($data->flatten(1)) // flattening to handle nested grouping
                 ->addIndexColumn()
@@ -51,11 +55,15 @@ class ReportSalesAdminController extends Controller
                     $totalPemasukan = $groupedData->where('category', 'pemasukan')->sum('total');
                     return $totalPemasukan > 0 ? 'Rp. ' . number_format($totalPemasukan, 0, ',', '.') : '';
                 })
-                ->rawColumns(['Pemasukan', 'tanggal', 'bumdes'])
+                ->addColumn('Pengeluaran', function ($groupedData) {
+                    $totalPengeluaran = $groupedData->where('category', 'pengeluaran')->sum('total');
+                    return $totalPengeluaran > 0 ? 'Rp. ' . number_format($totalPengeluaran, 0, ',', '.') : '';
+                })
+                ->rawColumns(['Pemasukan', 'Pengeluaran', 'tanggal', 'bumdes'])
                 ->make(true);
         }
         $data = Bumdes::all();
-        return view('layouts.pages.admin.ReportSales.index', compact('data'));
+        return view('layouts.pages.user.ReportUser.index', compact('data'));
     }
 
     /**

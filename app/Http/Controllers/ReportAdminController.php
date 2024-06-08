@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bumdes;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportAdminController extends Controller
@@ -13,33 +15,50 @@ class ReportAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            if (auth()->user()->role == 'admin') {
-                $data = Transaction::orderBy('created_at', 'desc')->get();
-            } else {
-                $idbumdes = Transaction::where('idUser', auth()->user()->id)->orderBy('created_at', 'desc')->get();
-                $data = Transaction::whereIn('idBumdes', $idbumdes->idBumdes)->orderBy('created_at', 'desc')->get();
+
+            $query = Transaction::with('bumdes')->orderBy('created_at', 'desc');
+
+            // Apply filters
+            if ($request->has('bumdes') && !empty($request->bumdes)) {
+                $query->where('idBumdes', $request->bumdes);
             }
+
+            if ($request->has('dari') && !empty($request->dari)) {
+                $query->whereDate('tanggal', '>=', $request->dari);
+            }
+
+            if ($request->has('sampai') && !empty($request->sampai)) {
+                $query->whereDate('tanggal', '<=', $request->sampai);
+            }
+
+            $data = $query->get()->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->format('d F Y');
+            })->map(function ($dayGroup) {
+                return $dayGroup->groupBy('idBumdes');
+            });
             return datatables()
-                ->of($data)
+                ->of($data->flatten(1)) // flattening to handle nested grouping
                 ->addIndexColumn()
-                ->addColumn('pemasukan', function ($data) {
-                    if ($data->category == 'pemasukan') {
-                        return $data->total;
-                    } else {
-                        return "";
-                    }
+                ->addColumn('tanggal', function ($groupedData) {
+                    return Carbon::parse($groupedData->first()->tanggal)->format('d F Y');
                 })
-                ->addColumn('pengeluaran', function ($data) {
-                    if ($data->category == 'pengeluaran') {
-                        return $data->total;
-                    } else {
-                        return "";
-                    }
+                ->addColumn('bumdes', function ($groupedData) {
+                    $firstTransaction = $groupedData->first();
+                    return $firstTransaction->bumdes ? $firstTransaction->bumdes->name : 'N/A';
                 })
-                ->rawColumns(['pemasukan', 'pengeluaran'])
+                ->addColumn('Pemasukan', function ($groupedData) {
+                    $totalPemasukan = $groupedData->where('category', 'pemasukan')->sum('total');
+                    return $totalPemasukan > 0 ? 'Rp. ' . number_format($totalPemasukan, 0, ',', '.') : '';
+                })
+                ->addColumn('Pengeluaran', function ($groupedData) {
+                    $totalPengeluaran = $groupedData->where('category', 'pengeluaran')->sum('total');
+                    return $totalPengeluaran > 0 ? 'Rp. ' . number_format($totalPengeluaran, 0, ',', '.') : '';
+                })
+                ->rawColumns(['Pemasukan', 'Pengeluaran', 'tanggal', 'bumdes'])
                 ->make(true);
         }
-        return view('layouts.pages.admin.ReportAdmin.index');
+        $data = Bumdes::all();
+        return view('layouts.pages.admin.ReportAdmin.index', compact('data'));
     }
 
     /**

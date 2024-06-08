@@ -8,15 +8,20 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BumdesController;
 use App\Http\Controllers\BannersController;
+use App\Http\Controllers\BumdesUserController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\editProfilPengguna;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\ReportAdminController;
 use App\Http\Controllers\ReportPurchaseAdminController;
+use App\Http\Controllers\ReportPurchaseUserController;
 use App\Http\Controllers\ReportSalesAdminController;
+use App\Http\Controllers\ReportSalesUserController;
+use App\Http\Controllers\ReportUserController;
 use App\Http\Controllers\SosialMediaController;
 use App\Http\Controllers\StrukturalController;
 
@@ -55,11 +60,13 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
 });
 
 Route::middleware(['auth', 'verified', 'isUser'])->prefix('User')->name('user.')->group(function () {
-    Route::resource('bumdesUser', BumdesController::class);
-    Route::resource('reportUser', ReportAdminController::class);
-    Route::resource('reportsalesuser', ReportSalesAdminController::class);
-    Route::resource('reportpurchaseuser', ReportPurchaseAdminController::class);
-    Route::resource('penggunaupdateuser', UserController::class);
+    Route::resource('bumdesUser', BumdesUserController::class);
+    Route::resource('reportUser', ReportUserController::class);
+    Route::resource('reportsalesuser', ReportSalesUserController::class);
+    Route::resource('reportpurchaseuser', ReportPurchaseUserController::class);
+    Route::resource('penggunaupdateuser', ProfileUserController::class);
+    Route::get('/detailpengeluaran/{date}', [ReportPurchaseUserController::class, 'detail'])->name('reportpurchaseuser.detail');
+    Route::get('/detailpemasukan/{date}', [ReportSalesUserController::class, 'detail'])->name('reportsalesuser.detail');
 });
 
 

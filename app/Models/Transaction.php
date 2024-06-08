@@ -11,9 +11,15 @@ class Transaction extends Model
     protected $primaryKey = 'idTransaction';
     protected $fillable = [
         'idBumdes',
-        'idUser',
+        'user',
         'category',
+        'tanggal',
         'title',
         'total',
     ];
+
+    public function bumdes()
+    {
+        return $this->belongsTo(Bumdes::class, 'idBumdes', 'idBumdes');
+    }
 }

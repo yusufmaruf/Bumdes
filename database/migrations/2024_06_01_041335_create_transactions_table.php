@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('idTransaction');
             $table->integer('idBumdes');
+            $table->date('tanggal');
             $table->integer('user');
             $table->enum('category', ['pemasukan', 'pengeluaran']);
             $table->string('title');
