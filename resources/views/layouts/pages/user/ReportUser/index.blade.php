@@ -18,22 +18,21 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Seluruh Pengeluaran</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Transaksi Unit Usaha</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0"> Data Seluruh Pengeluaran</h5>
+                    <h5 class="card-title mb-0">Data Transaksi</h5>
 
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <form id="form-filter" class="m-3" method="get">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">BUMDES</label>
+                        <label for="name" class="form-label">Unit Usaha</label>
                         <select name="idBumdes" id="select2Role" class="select2 form-select form-select form-control">
                             <option value="">Pilih Unit Usaha</option>
-
                             @foreach ($data as $item)
                                 {
                                 <option value="{{ $item->idBumdes }}">{{ $item->name }}</option>
@@ -67,6 +66,7 @@
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Unit Usaha</th>
+                            <th>Pemasukan</th>
                             <th>Pengeluaran</th>
                         </tr>
                     </thead>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.gallery.modalDelete')
+    {{-- @includeIf('layouts.pages.user.gallery.modalDelete') --}}
 @endsection
 
 @push('script')
@@ -98,12 +98,12 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('admin.reportpurchaseadmin.index') }}',
+                    url: '{{ route('user.reportUser.index') }}',
                     data: function(d) {
                         d.bumdes = $('#select2Role').val();
                         d.dari = $('#dari').val();
                         d.sampai = $('#sampai').val();
-                    },
+                    }
                 },
                 columns: [{
                     data: 'DT_RowIndex',
@@ -112,13 +112,16 @@
                 }, {
                     data: 'bumdes',
                 }, {
+                    data: 'Pemasukan',
+                }, {
                     data: 'Pengeluaran',
                 }],
             });
-        });
-        $('#form-filter').on('submit', function(e) {
-            e.preventDefault();
-            table.ajax.reload(); // Reload the table data with the new filter parameters
+            $('#form-filter').on('submit', function(e) {
+                e.preventDefault();
+                table.ajax.reload(); // Reload the table data with the new filter parameters
+            });
+
         });
     </script>
 @endpush

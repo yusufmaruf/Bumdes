@@ -18,12 +18,15 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Seluruh Pengeluaran</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Transaksi Pengeluaran</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0"> Data Seluruh Pengeluaran</h5>
+                    <h5 class="card-title mb-0">Data Transaksi Penegeluaran</h5>
+                    <a href="{{ route('user.reportpurchaseuser.create') }}" class="btn btn-vimeo ml-auto"><span
+                            class="ti ti-plus me-1">
+                        </span> Tambah Data</a>
 
                     <!-- Move the button to the right using ml-auto -->
                 </div>
@@ -32,7 +35,7 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">BUMDES</label>
                         <select name="idBumdes" id="select2Role" class="select2 form-select form-select form-control">
-                            <option value="">Pilih Unit Usaha</option>
+                            <option value="">Pilih Bumdes</option>
 
                             @foreach ($data as $item)
                                 {
@@ -66,8 +69,9 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Unit Usaha</th>
+                            <th>Bumdes</th>
                             <th>Pengeluaran</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +81,6 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.gallery.modalDelete')
 @endsection
 
 @push('script')
@@ -98,7 +101,7 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('admin.reportpurchaseadmin.index') }}',
+                    url: '{{ route('user.reportpurchaseuser.index') }}',
                     data: function(d) {
                         d.bumdes = $('#select2Role').val();
                         d.dari = $('#dari').val();
@@ -113,6 +116,8 @@
                     data: 'bumdes',
                 }, {
                     data: 'Pengeluaran',
+                }, {
+                    data: 'aksi',
                 }],
             });
         });

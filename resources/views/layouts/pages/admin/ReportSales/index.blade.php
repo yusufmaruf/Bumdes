@@ -18,21 +18,21 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Gallery</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Seluruh Penjualan</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Data Transaksi</h5>
+                    <h5 class="card-title mb-0">Data Seluruh Penjualan</h5>
 
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <form id="form-filter" class="m-3" method="get">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">BUMDES</label>
+                        <label for="name" class="form-label">Unit Usaha</label>
                         <select name="idBumdes" id="select2Role" class="select2 form-select form-select form-control">
-                            <option value="">Pilih Bumdes</option>
+                            <option value="">Pilih Unit Usaha</option>
 
                             @foreach ($data as $item)
                                 {
@@ -66,7 +66,7 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Bumdes</th>
+                            <th>Unit Usaha</th>
                             <th>Pemasukan</th>
                         </tr>
                     </thead>

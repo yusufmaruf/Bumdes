@@ -11,8 +11,9 @@ class Transaction extends Model
     protected $primaryKey = 'idTransaction';
     protected $fillable = [
         'idBumdes',
-        'idUser',
+        'user',
         'category',
+        'tanggal',
         'title',
         'total',
     ];
