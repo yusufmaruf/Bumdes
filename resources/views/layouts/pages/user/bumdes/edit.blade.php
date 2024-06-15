@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Tambah Bumdes</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Update /</span> Update Bumdes</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
@@ -65,17 +65,6 @@
                                 @foreach ($dataJenisUsaha as $item)
                                     <option value="{{ $item->idJenisUsaha }}"
                                         @if ($item->idJenisUsaha == $data->idJenisUsaha) selected @endif>
-                                        {{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label ">Penangung Jawab <span
-                                    style="color: red">*</span></label>
-                            <select required name="idUser" id="select2User"
-                                class="select2 form-select form-select form-control">
-                                @foreach ($user as $item)
-                                    <option value="{{ $item->id }}" @if ($item->id == $data->idUser) selected @endif>
                                         {{ $item->name }}</option>
                                 @endforeach
                             </select>

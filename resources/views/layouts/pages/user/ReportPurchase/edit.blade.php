@@ -7,16 +7,16 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Edit Data Pemasukan</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Edit Data Transaksi Pengeluaran</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Edit Data Purchase</h5>
+                    <h5 class="card-title mb-0">Edit Data Transaksi Pengeluaran</h5>
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user.reportsalesuser.update', $data->idTransaction) }}" id="basic-form"
+                    <form action="{{ route('user.reportpurchaseuser.update', $data->idTransaction) }}" id="basic-form"
                         method="post" novalidate enctype="multipart/form-data">
                         @method('PUT')
                         @csrf

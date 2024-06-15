@@ -17,19 +17,19 @@
 @endpush
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Data Bumdes</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengguna /</span> Data Unit Usaha</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Data Bumdes</h5>
+                    <h5 class="card-title mb-0">Data Unit Usaha</h5>
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <table class="table table-dt">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Usaha</th>
+                            <th>Nama Unit Usaha</th>
                             <th>Deskripsi</th>
                             <th>Logo</th>
                             <th>Lokasi</th>

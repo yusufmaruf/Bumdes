@@ -7,37 +7,42 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengguna /</span> Tambah Data Pemasukan</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Edit Data Transaksi Pemasukan</h4>
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Tambah Data Pemasukan</h5>
+                    <h5 class="card-title mb-0">Edit Data Transaksi Pemasukan</h5>
                     <!-- Move the button to the right using ml-auto -->
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user.reportsalesuser.store') }}" id="basic-form" method="post" novalidate
-                        enctype="multipart/form-data">
+                    <form action="{{ route('user.reportsalesuser.update', $data->idTransaction) }}" id="basic-form"
+                        method="post" novalidate enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Unit Usaha</label>
                             <select name="idBumdes" id="select2basic" class="select2 form-select form-select form-control">
-                                @foreach ($data as $item)
-                                    <option value="{{ $item->idBumdes }}">{{ $item->name }}</option>
+                                @foreach ($bumdes as $item)
+                                    <option value="{{ $item->idBumdes }}" @if ($item->idBumdes == $data->idBumdes) selected @endif>
+                                        {{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="">tanggal</label>
-                            <input required type="date" name="tanggal" id="" class="form-control">
+                            <input required type="date" name="tanggal" id="" class="form-control"
+                                value="{{ $data->tanggal }}">
                         </div>
                         <div class="mb-3">
                             <label for="">Title</label>
-                            <input required type="text" name="title" id="" class="form-control">
+                            <input required type="text" name="title" id="" class="form-control"
+                                value="{{ $data->title }}">
                         </div>
                         <div class="mb-3">
                             <label for="">Total</label>
-                            <input required type="number" name="total" id="" class="form-control">
+                            <input required type="number" name="total" id="" class="form-control"
+                                value="{{ $data->total }}">
                         </div>
                         <div class="mb-3">
                             <button required type="submit" class="btn btn-primary">Submit</button>

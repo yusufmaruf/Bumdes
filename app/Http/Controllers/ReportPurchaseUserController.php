@@ -36,7 +36,7 @@ class ReportPurchaseUserController extends Controller
             }
 
             $data = $query->get()->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d F Y');
+                return Carbon::parse($date->tanggal)->format('d F Y');
             })->map(function ($dayGroup) {
                 return $dayGroup->groupBy('idBumdes');
             });

@@ -35,7 +35,7 @@ class ReportSalesUserController extends Controller
             }
 
             $data = $query->get()->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d F Y');
+                return Carbon::parse($date->tanggal)->format('d F Y');
             })->map(function ($dayGroup) {
                 return $dayGroup->groupBy('idBumdes');
             });
@@ -108,7 +108,7 @@ class ReportSalesUserController extends Controller
         $bumdes = Bumdes::where('idUser', auth()->user()->id)->get();
 
         $data = Transaction::find($id);
-        return view('layouts.pages.user.ReportPurchase.edit', compact('data', 'bumdes'));
+        return view('layouts.pages.user.ReportSales.edit', compact('data', 'bumdes'));
     }
 
     /**

@@ -71,7 +71,7 @@ class BumdesUserController extends Controller
     {
         $bumdes = Bumdes::find($id);
         $data = JenisUsaha::all();
-        return view('layouts.pages.admin.bumdes.edit', ['data' => $bumdes, 'dataJenisUsaha' => $data]);
+        return view('layouts.pages.user.bumdes.edit', ['data' => $bumdes, 'dataJenisUsaha' => $data]);
     }
 
     /**

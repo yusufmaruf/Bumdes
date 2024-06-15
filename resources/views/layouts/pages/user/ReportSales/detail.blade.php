@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-    @includeIf('layouts.pages.admin.gallery.modalDelete')
 @endsection
 
 @push('script')
