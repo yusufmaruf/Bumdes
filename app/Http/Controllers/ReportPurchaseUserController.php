@@ -145,7 +145,7 @@ class ReportPurchaseUserController extends Controller
         if ($request->ajax()) {
             $idBumdes = Bumdes::where('idUser', auth()->user()->id)->pluck('idBumdes')->toArray();
             $query = Transaction::with('bumdes')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('tanggal', 'desc')
                 ->whereIn('idBumdes', $idBumdes)
                 ->where('tanggal', $date)
                 ->where('category', 'pengeluaran');

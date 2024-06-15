@@ -46,7 +46,6 @@ class GalleryController extends Controller
         $request->validate([
             'name' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'vidio' => 'string'
         ]);
 
         $data = $request->all();

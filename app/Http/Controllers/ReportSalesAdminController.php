@@ -17,7 +17,7 @@ class ReportSalesAdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Transaction::with('bumdes')->orderBy('created_at', 'desc');
+            $query = Transaction::with('bumdes')->orderBy('tanggal', 'desc');
 
             // Apply filters
             if ($request->has('bumdes') && !empty($request->bumdes)) {
@@ -33,7 +33,7 @@ class ReportSalesAdminController extends Controller
             }
 
             $data = $query->get()->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d F Y');
+                return Carbon::parse($date->tanggal)->format('d F Y');
             })->map(function ($dayGroup) {
                 return $dayGroup->groupBy('idBumdes');
             });
@@ -49,7 +49,7 @@ class ReportSalesAdminController extends Controller
                 })
                 ->addColumn('Pemasukan', function ($groupedData) {
                     $totalPemasukan = $groupedData->where('category', 'pemasukan')->sum('total');
-                    return $totalPemasukan > 0 ? 'Rp. ' . number_format($totalPemasukan, 0, ',', '.') : '';
+                    return $totalPemasukan > 0 ? 'Rp. ' . number_format($totalPemasukan, 0, ',', '.') : 'Rp. 0';
                 })
                 ->rawColumns(['Pemasukan', 'tanggal', 'bumdes'])
                 ->make(true);
