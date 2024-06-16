@@ -1,7 +1,6 @@
 <?php
 
-use GuzzleHttp\Middleware;
-use App\Models\CategoryPost;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\JenisUsahaController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\editProfilPengguna;
 use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\ReportAdminController;
@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('dashboardAdmin', DashboardAdminController::class);
     Route::resource('categoryPost', CategoryPostController::class);
     Route::resource('categoryUnitUsaha', JenisUsahaController::class);
     Route::resource('pengguna', UserController::class);

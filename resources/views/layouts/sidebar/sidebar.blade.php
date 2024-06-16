@@ -19,13 +19,19 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item  {{ request()->is('dashboard*') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}" class="menu-link">
+            <a href="{{ route('admin.dashboardAdmin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-smart-home"></i>
                 <div>Dashboard</div>
             </a>
         </li>
 
         @if (Auth::user()->role == 'admin')
+            <li class="menu-item  {{ request()->is('dashboard*') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboardAdmin.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                    <div>Dashboard</div>
+                </a>
+            </li>
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Pengguna</span>
             </li>
@@ -133,6 +139,12 @@
                 </a>
             </li>
         @else
+            <li class="menu-item  {{ request()->is('dashboard*') ? 'active' : '' }}">
+                <a href="" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                    <div>Dashboard</div>
+                </a>
+            </li>
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Master Unit Usaha</span>
             </li>
